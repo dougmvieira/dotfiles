@@ -49,8 +49,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec kitty
-exec --no-startup-id xport PATH=$PATH:$HOME/.local/kitty.app/bin
+bindsym $mod+Return exec $HOME/.local/kitty.app/bin/kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -191,8 +190,11 @@ bindsym $mod+r mode "resize"
 #         status_command i3status
 # }
 
+# keyboard remapping
+exec --no-startup-id $HOME/.cargo/bin/kanata -c $HOME/.config/kanata.kbd
+
 # screen resolution
-exec --no-startup-id randr --output Virtual-1 --mode 1920x1080
+exec --no-startup-id xrandr --output Virtual-1 --mode 1920x1080
 
 # screen capture
 bindsym $mod+Shift+s exec --no-startup-id maim --select | tee $HOME/Screenshots/$(date "+%Y-%m-%d_%H:%M:%S").png | xclip -selection clipboard -t image/png
